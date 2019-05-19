@@ -63,7 +63,7 @@ public class RedisLockClient {
     public <T> T tryLock(String key, LockHandler<T> handler, long timeout, boolean autoUnlock, int retries, long waitingTime,
         Class<? extends RuntimeException> onFailure) throws Throwable {
 
-        try (DistributedLock lock = this.getLock(key, timeout, retries, waitingTime);) {
+        try (DistributedLock lock = this.acquire(key, timeout, retries, waitingTime);) {
             if (lock != null) {
                 LOGGER.debug("get lock success, key: {}", key);
                 return handler.handle();
@@ -77,7 +77,7 @@ public class RedisLockClient {
     }
 
     /**
-     * get distributed  lock
+     * acquire distributed  lock
      * 
      * @author piaoruiqing
      *
@@ -88,7 +88,7 @@ public class RedisLockClient {
      * @return
      * @throws InterruptedException
      */
-    public DistributedLock getLock(String key, long timeout, int retries, long waitingTime) throws InterruptedException {
+    public DistributedLock acquire(String key, long timeout, int retries, long waitingTime) throws InterruptedException {
 
         final String value = RandomStringUtils.randomAlphanumeric(4) + System.currentTimeMillis();
         do {

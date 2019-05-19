@@ -4,5 +4,5 @@ spring:
   redis:
     host: t-redis-server
     port: 6379
-    password: 
+    password: Abc12345
     timeout: 5000

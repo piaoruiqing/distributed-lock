@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: distributed-lock
-  redis:
-    host: t-redis-server
-    port: 6379
-    password: 
-    timeout: 5000

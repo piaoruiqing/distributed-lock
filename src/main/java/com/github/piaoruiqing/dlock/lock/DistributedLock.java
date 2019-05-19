@@ -33,10 +33,10 @@ abstract public class DistributedLock implements AutoCloseable {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     /**
-     * unlock
+     * release lock
      * @author piaoruiqing
      */
-    abstract public void unlock();
+    abstract public void release();
 
     /*
      * (non-Javadoc)
@@ -47,6 +47,6 @@ abstract public class DistributedLock implements AutoCloseable {
 
         LOGGER.debug("distributed lock close , {}", this.toString());
 
-        this.unlock();
+        this.release();
     }
 }

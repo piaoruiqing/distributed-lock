@@ -57,12 +57,11 @@ public class RedisDistributedLock extends DistributedLock {
         this.value = value;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.piaoruiqing.demo.distributed.lock.DistributedLock#unlock()
+    /* (non-Javadoc)
+     * @see com.github.piaoruiqing.dlock.lock.DistributedLock#release()
      */
     @Override
-    public void unlock() {
+    public void release() {
 
         List<String> keys = Collections.singletonList(key);
         operations.execute(new DefaultRedisScript<Object>(COMPARE_AND_DELETE, Object.class), keys, value);
